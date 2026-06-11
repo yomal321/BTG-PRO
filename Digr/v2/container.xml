@@ -1,0 +1,174 @@
+<mxGraphModel dx="1422" dy="762" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1300" pageHeight="880" math="0" shadow="0">
+  <root>
+    <mxCell id="0"/><mxCell id="1" parent="0"/>
+
+    <!-- ══ TITLE ══ -->
+    <mxCell id="tbg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="0" y="0" width="1300" height="62" as="geometry"/>
+    </mxCell>
+    <mxCell id="tt" value="Container Diagram — btg-devops (Final Project)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=20;fontStyle=1;fontColor=#ffffff;" vertex="1" parent="1">
+      <mxGeometry x="0" y="0" width="1300" height="40" as="geometry"/>
+    </mxCell>
+    <mxCell id="ts" value="[C4 Level 2 — three access paths: CLI · Dashboard Normal Mode · Dashboard Agent Mode]" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=11;fontColor=#aaccff;" vertex="1" parent="1">
+      <mxGeometry x="0" y="38" width="1300" height="24" as="geometry"/>
+    </mxCell>
+
+    <!-- ══ PEOPLE ══ -->
+    <mxCell id="p_dev" value="&lt;b&gt;DevOps Engineer&lt;/b&gt;&lt;br&gt;&lt;font color='#aaccff'&gt;[Person]&lt;/font&gt;&lt;br&gt;&lt;br&gt;Runs CLI commands to audit Azure resources from the terminal." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#08427B;strokeColor=#052E56;fontColor=#ffffff;fontSize=10;arcSize=8;" vertex="1" parent="1">
+      <mxGeometry x="20" y="148" width="155" height="88" as="geometry"/>
+    </mxCell>
+    <mxCell id="p_user" value="&lt;b&gt;User&lt;/b&gt;&lt;br&gt;&lt;font color='#aaccff'&gt;[Person]&lt;/font&gt;&lt;br&gt;&lt;br&gt;Uses the Dashboard — either Normal Mode or Agent Mode — to audit resources in the browser." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#08427B;strokeColor=#052E56;fontColor=#ffffff;fontSize=10;arcSize=8;" vertex="1" parent="1">
+      <mxGeometry x="20" y="648" width="155" height="88" as="geometry"/>
+    </mxCell>
+
+    <!-- ══ SYSTEM BOUNDARY ══ -->
+    <mxCell id="sys_lbl" value="btg-devops  [Software System Boundary]" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontStyle=1;fontSize=11;fontColor=#444444;" vertex="1" parent="1">
+      <mxGeometry x="203" y="78" width="380" height="20" as="geometry"/>
+    </mxCell>
+    <mxCell id="sys_bnd" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#888888;strokeDasharray=8 4;strokeWidth=2;" vertex="1" parent="1">
+      <mxGeometry x="196" y="76" width="700" height="738" as="geometry"/>
+    </mxCell>
+
+    <!-- ══ GO BINARY INNER BOUNDARY ══ -->
+    <mxCell id="gb_lbl" value="Go CLI Binary  [Container Boundary]" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontStyle=1;fontSize=10;fontColor=#1A5276;" vertex="1" parent="1">
+      <mxGeometry x="210" y="100" width="300" height="18" as="geometry"/>
+    </mxCell>
+    <mxCell id="gb_bnd" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EBF5FB;strokeColor=#AED6F1;strokeWidth=1.5;" vertex="1" parent="1">
+      <mxGeometry x="205" y="98" width="675" height="535" as="geometry"/>
+    </mxCell>
+
+    <!-- ══ ROUTING CONTAINERS (Row 1) ══ -->
+    <mxCell id="c_cli" value="&lt;b&gt;CLI Interface&lt;/b&gt;&lt;br&gt;&lt;font color='#aaccff'&gt;[Container: Go / Cobra]&lt;/font&gt;&lt;br&gt;&lt;br&gt;Parses commands and routes to the correct analyzer. Used by CLI path only." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6DA4;fontColor=#ffffff;fontSize=10;arcSize=6;" vertex="1" parent="1">
+      <mxGeometry x="218" y="120" width="190" height="90" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_mcp" value="&lt;b&gt;MCP Server&lt;/b&gt;&lt;br&gt;&lt;font color='#f0d9ff'&gt;[Container: Go / stdio+HTTP]&lt;/font&gt;&lt;br&gt;&lt;br&gt;Exposes 12 analyzers as MCP tools. Used by Agent Mode — called by Claude Agent." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8E44AD;strokeColor=#6C3483;fontColor=#ffffff;fontSize=10;arcSize=6;" vertex="1" parent="1">
+      <mxGeometry x="435" y="120" width="190" height="90" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_server" value="&lt;b&gt;HTTP API Server&lt;/b&gt;&lt;br&gt;&lt;font color='#fde8d0'&gt;[Container: Go / REST]&lt;/font&gt;&lt;br&gt;&lt;br&gt;Exposes REST endpoints per module. Used by Normal Mode — called directly by the Dashboard." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E67E22;strokeColor=#CA6F1E;fontColor=#ffffff;fontSize=10;arcSize=6;" vertex="1" parent="1">
+      <mxGeometry x="652" y="120" width="190" height="90" as="geometry"/>
+    </mxCell>
+
+    <!-- ══ SHARED CONTAINERS (Row 2 + 3) ══ -->
+    <mxCell id="c_engine" value="&lt;b&gt;Analysis Engine&lt;/b&gt;&lt;br&gt;&lt;font color='#aaccff'&gt;[Container: Go — shared by all three paths]&lt;/font&gt;&lt;br&gt;&lt;br&gt;12 analyzer modules. Applies Critical / Warning / Info severity rules. Called by CLI Interface, MCP Server, and HTTP API Server." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6DA4;fontColor=#ffffff;fontSize=10;arcSize=6;" vertex="1" parent="1">
+      <mxGeometry x="218" y="278" width="622" height="90" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_sdk" value="&lt;b&gt;Azure SDK Layer&lt;/b&gt;&lt;br&gt;&lt;font color='#aaccff'&gt;[Container: Go / azure-sdk-for-go]&lt;/font&gt;&lt;br&gt;&lt;br&gt;azidentity + 12 ARM clients. Authenticates via Service Principal and fetches resource data." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6DA4;fontColor=#ffffff;fontSize=10;arcSize=6;" vertex="1" parent="1">
+      <mxGeometry x="218" y="432" width="300" height="90" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_formatter" value="&lt;b&gt;Output Formatter&lt;/b&gt;&lt;br&gt;&lt;font color='#aaccff'&gt;[Container: Go]&lt;/font&gt;&lt;br&gt;&lt;br&gt;Renders findings as terminal table or JSON. Used by CLI path only." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6DA4;fontColor=#ffffff;fontSize=10;arcSize=6;" vertex="1" parent="1">
+      <mxGeometry x="540" y="432" width="300" height="90" as="geometry"/>
+    </mxCell>
+
+    <!-- ══ NEXT.JS DASHBOARD INNER BOUNDARY ══ -->
+    <mxCell id="njs_lbl" value="Next.js Dashboard  [Container Boundary]" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontStyle=1;fontSize=10;fontColor=#6C3483;" vertex="1" parent="1">
+      <mxGeometry x="210" y="650" width="300" height="18" as="geometry"/>
+    </mxCell>
+    <mxCell id="njs_bnd" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5EEF8;strokeColor=#D2B4DE;strokeWidth=1.5;" vertex="1" parent="1">
+      <mxGeometry x="205" y="648" width="675" height="148" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_dash" value="&lt;b&gt;Next.js Dashboard&lt;/b&gt;&lt;br&gt;&lt;font color='#f0d9ff'&gt;[Container: Next.js / TypeScript / Vercel]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Mode 1 (Normal):&lt;/b&gt; user selects module → calls HTTP API Server directly.&lt;br&gt;&lt;b&gt;Mode 2 (Agent):&lt;/b&gt; user types prompt → triggers Claude Agent → MCP Server." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8E44AD;strokeColor=#6C3483;fontColor=#ffffff;fontSize=10;arcSize=6;" vertex="1" parent="1">
+      <mxGeometry x="218" y="665" width="622" height="118" as="geometry"/>
+    </mxCell>
+
+    <!-- ══ EXTERNAL SYSTEMS ══ -->
+    <mxCell id="e_claude" value="&lt;b&gt;Claude Agent&lt;/b&gt;&lt;br&gt;&lt;font color='#eeeeee'&gt;[External System — Agent Mode only]&lt;/font&gt;&lt;br&gt;&lt;br&gt;Receives prompt from Dashboard. Calls MCP tools and returns an AI explanation of findings." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#08427B;strokeColor=#052E56;fontColor=#ffffff;fontSize=10;arcSize=6;" vertex="1" parent="1">
+      <mxGeometry x="975" y="200" width="270" height="90" as="geometry"/>
+    </mxCell>
+    <mxCell id="e_gha" value="&lt;b&gt;GitHub Actions CI&lt;/b&gt;&lt;br&gt;&lt;font color='#eeeeee'&gt;[External System]&lt;/font&gt;&lt;br&gt;&lt;br&gt;Builds, tests, lints and publishes release binaries on every push and PR." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6F6F6F;strokeColor=#3A3A3A;fontColor=#ffffff;fontSize=10;arcSize=6;" vertex="1" parent="1">
+      <mxGeometry x="975" y="350" width="270" height="80" as="geometry"/>
+    </mxCell>
+    <mxCell id="e_aad" value="&lt;b&gt;Azure Active Directory&lt;/b&gt;&lt;br&gt;&lt;font color='#eeeeee'&gt;[External System]&lt;/font&gt;&lt;br&gt;&lt;br&gt;Validates Service Principal and issues OAuth2 access tokens." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6F6F6F;strokeColor=#3A3A3A;fontColor=#ffffff;fontSize=10;arcSize=6;" vertex="1" parent="1">
+      <mxGeometry x="975" y="448" width="270" height="80" as="geometry"/>
+    </mxCell>
+    <mxCell id="e_arm" value="&lt;b&gt;Azure Resource Manager&lt;/b&gt;&lt;br&gt;&lt;font color='#eeeeee'&gt;[External System]&lt;/font&gt;&lt;br&gt;&lt;br&gt;Returns resource data for all 12 service types via REST API." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6F6F6F;strokeColor=#3A3A3A;fontColor=#ffffff;fontSize=10;arcSize=6;" vertex="1" parent="1">
+      <mxGeometry x="975" y="546" width="270" height="80" as="geometry"/>
+    </mxCell>
+    <mxCell id="e_vercel" value="&lt;b&gt;Vercel&lt;/b&gt;&lt;br&gt;&lt;font color='#eeeeee'&gt;[External System]&lt;/font&gt;&lt;br&gt;&lt;br&gt;Hosts and serves the Next.js Dashboard as a public web application." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6F6F6F;strokeColor=#3A3A3A;fontColor=#ffffff;fontSize=10;arcSize=6;" vertex="1" parent="1">
+      <mxGeometry x="975" y="665" width="270" height="80" as="geometry"/>
+    </mxCell>
+
+    <!-- ══ ARROWS — CLI PATH (blue) ══ -->
+    <mxCell id="a1" value="runs analyze commands" style="endArrow=block;endFill=1;edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="p_dev" target="c_cli" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="a2" value="delegates to analyzer" style="endArrow=block;endFill=1;edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.2;entryY=0;entryDx=0;entryDy=0;" edge="1" source="c_cli" target="c_engine" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="a3" value="fetches resource data" style="endArrow=block;endFill=1;edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;exitX=0.3;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="c_engine" target="c_sdk" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="a4" value="sends findings" style="endArrow=block;endFill=1;edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;exitX=0.7;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="c_engine" target="c_formatter" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="a5" value="authenticates (HTTPS)" style="endArrow=block;endFill=1;edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;exitX=1;exitY=0.35;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="c_sdk" target="e_aad" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points"><mxPoint x="953" y="462"/><mxPoint x="953" y="488"/></Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="a6" value="reads resource data (HTTPS)" style="endArrow=block;endFill=1;edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;exitX=1;exitY=0.7;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="c_sdk" target="e_arm" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points"><mxPoint x="960" y="475"/><mxPoint x="960" y="586"/></Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="a7" value="builds, tests &amp; releases" style="endArrow=block;endFill=1;edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;dashed=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="e_gha" target="gb_bnd" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+    <!-- ══ ARROWS — MODE 1 NORMAL (orange) ══ -->
+    <mxCell id="b1" value="opens dashboard" style="endArrow=block;endFill=1;edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;strokeColor=#E67E22;fontColor=#E67E22;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="p_user" target="c_dash" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="b2" value="Mode 1: HTTP GET /analyze/{module}" style="endArrow=block;endFill=1;edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;fontStyle=1;strokeColor=#E67E22;strokeWidth=2;fontColor=#E67E22;exitX=0.85;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" source="c_dash" target="c_server" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="b3" value="invokes analyzer" style="endArrow=block;endFill=1;edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;strokeColor=#E67E22;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.8;entryY=0;entryDx=0;entryDy=0;" edge="1" source="c_server" target="c_engine" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="b4" value="JSON findings" style="endArrow=block;endFill=1;edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;dashed=1;strokeColor=#E67E22;strokeWidth=2;fontColor=#E67E22;exitX=1;exitY=0.7;exitDx=0;exitDy=0;entryX=1;entryY=0.2;entryDx=0;entryDy=0;" edge="1" source="c_server" target="c_dash" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points"><mxPoint x="900" y="145"/><mxPoint x="900" y="685"/></Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="b5" value="deployed on" style="endArrow=block;endFill=1;edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="c_dash" target="e_vercel" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+    <!-- ══ ARROWS — MODE 2 AGENT (purple) ══ -->
+    <mxCell id="c1" value="Mode 2: sends prompt" style="endArrow=block;endFill=1;edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;fontStyle=1;strokeColor=#8E44AD;strokeWidth=2;fontColor=#8E44AD;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" source="c_dash" target="e_claude" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points"><mxPoint x="540" y="580"/><mxPoint x="1110" y="580"/><mxPoint x="1110" y="290"/></Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="c2" value="calls MCP tools" style="endArrow=block;endFill=1;edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;fontStyle=1;strokeColor=#8E44AD;strokeWidth=2;fontColor=#8E44AD;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="e_claude" target="c_mcp" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points"><mxPoint x="940" y="245"/><mxPoint x="940" y="165"/></Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="c3" value="invokes analyzer" style="endArrow=block;endFill=1;edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;strokeColor=#8E44AD;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="c_mcp" target="c_engine" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="c4" value="AI explanation" style="endArrow=block;endFill=1;edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;dashed=1;strokeColor=#8E44AD;strokeWidth=2;fontColor=#8E44AD;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.3;entryY=0;entryDx=0;entryDy=0;" edge="1" source="e_claude" target="c_dash" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points"><mxPoint x="1110" y="320"/><mxPoint x="1110" y="600"/><mxPoint x="400" y="600"/></Array>
+      </mxGeometry>
+    </mxCell>
+
+    <!-- ══ LEGEND ══ -->
+    <mxCell id="leg_bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#cccccc;arcSize=4;" vertex="1" parent="1">
+      <mxGeometry x="20" y="840" width="760" height="30" as="geometry"/>
+    </mxCell>
+    <mxCell id="leg_t" value="&lt;b&gt;Paths:&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=10;" vertex="1" parent="1">
+      <mxGeometry x="32" y="847" width="55" height="18" as="geometry"/>
+    </mxCell>
+    <mxCell id="leg1" value="CLI Path" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6DA4;fontColor=#ffffff;fontSize=9;" vertex="1" parent="1">
+      <mxGeometry x="90" y="847" width="120" height="18" as="geometry"/>
+    </mxCell>
+    <mxCell id="leg2" value="Mode 1 — Normal (Dashboard → HTTP API)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E67E22;strokeColor=#CA6F1E;fontColor=#ffffff;fontSize=9;" vertex="1" parent="1">
+      <mxGeometry x="222" y="847" width="240" height="18" as="geometry"/>
+    </mxCell>
+    <mxCell id="leg3" value="Mode 2 — Agent (Dashboard → Claude → MCP)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8E44AD;strokeColor=#6C3483;fontColor=#ffffff;fontSize=9;" vertex="1" parent="1">
+      <mxGeometry x="474" y="847" width="250" height="18" as="geometry"/>
+    </mxCell>
+
+  </root>
+</mxGraphModel>

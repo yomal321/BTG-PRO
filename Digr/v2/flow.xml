@@ -1,0 +1,173 @@
+<mxGraphModel dx="1422" dy="762" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="900" math="0" shadow="0">
+  <root>
+    <mxCell id="0"/><mxCell id="1" parent="0"/>
+
+    <!-- ══ TITLE ══ -->
+    <mxCell id="tbg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="0" y="0" width="1200" height="65" as="geometry"/>
+    </mxCell>
+    <mxCell id="tt" value="btg-devops — Three Ways to Audit Azure" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#ffffff;" vertex="1" parent="1">
+      <mxGeometry x="0" y="0" width="1200" height="42" as="geometry"/>
+    </mxCell>
+    <mxCell id="ts" value="CLI · Dashboard Normal Mode · Dashboard Agent Mode — all three share the same analysis engine underneath" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=11;fontColor=#aaccff;" vertex="1" parent="1">
+      <mxGeometry x="0" y="40" width="1200" height="25" as="geometry"/>
+    </mxCell>
+
+    <!-- ══════════════════════════════════════════════
+         PATH 1 — CLI  (blue zone)
+    ══════════════════════════════════════════════════ -->
+    <mxCell id="z1" value="① PATH 1 — CLI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF5FB;strokeColor=#2E86C1;arcSize=3;align=left;verticalAlign=top;fontSize=11;fontStyle=1;fontColor=#1A5276;spacingLeft=12;spacingTop=8;strokeWidth=2;" vertex="1" parent="1">
+      <mxGeometry x="18" y="78" width="340" height="385" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="p1_person" value="&lt;b&gt;DevOps Engineer&lt;/b&gt;&lt;br&gt;Runs CLI commands in terminal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#08427B;strokeColor=#052E56;fontColor=#ffffff;fontSize=11;arcSize=8;" vertex="1" parent="1">
+      <mxGeometry x="88" y="105" width="195" height="55" as="geometry"/>
+    </mxCell>
+    <mxCell id="p1_cmd" value="&lt;b&gt;btg-devops analyze [module]&lt;/b&gt;&lt;br&gt;e.g. btg-devops analyze storage --output json" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6EAF8;strokeColor=#2E86C1;fontColor=#1A5276;fontSize=10;arcSize=6;" vertex="1" parent="1">
+      <mxGeometry x="48" y="210" width="285" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="p1_cli" value="&lt;b&gt;CLI Interface&lt;/b&gt;&lt;br&gt;&lt;font color='#aaccff'&gt;cmd/analyze_*.go&lt;/font&gt;&lt;br&gt;&lt;br&gt;Parses flags and routes to the matching analyzer module." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6DA4;fontColor=#ffffff;fontSize=10;arcSize=6;" vertex="1" parent="1">
+      <mxGeometry x="48" y="325" width="285" height="115" as="geometry"/>
+    </mxCell>
+
+    <!-- ══════════════════════════════════════════════
+         PATH 2 — DASHBOARD NORMAL MODE  (orange zone)
+    ══════════════════════════════════════════════════ -->
+    <mxCell id="z2" value="② PATH 2 — DASHBOARD NORMAL MODE" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF5EC;strokeColor=#E67E22;arcSize=3;align=left;verticalAlign=top;fontSize=11;fontStyle=1;fontColor=#A04000;spacingLeft=12;spacingTop=8;strokeWidth=2;" vertex="1" parent="1">
+      <mxGeometry x="378" y="78" width="340" height="385" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="p2_person" value="&lt;b&gt;User&lt;/b&gt;&lt;br&gt;Opens dashboard in browser" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#08427B;strokeColor=#052E56;fontColor=#ffffff;fontSize=11;arcSize=8;" vertex="1" parent="1">
+      <mxGeometry x="453" y="105" width="190" height="55" as="geometry"/>
+    </mxCell>
+    <mxCell id="p2_dash" value="&lt;b&gt;Next.js Dashboard&lt;/b&gt;&lt;br&gt;Selects module, clicks Analyze button" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDEBD0;strokeColor=#E67E22;fontColor=#784212;fontSize=10;arcSize=6;" vertex="1" parent="1">
+      <mxGeometry x="400" y="210" width="290" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="p2_api" value="&lt;b&gt;HTTP API Server&lt;/b&gt;&lt;br&gt;&lt;font color='#fde8d0'&gt;cmd/server.go&lt;/font&gt;&lt;br&gt;&lt;br&gt;Receives HTTP GET /analyze/{module} and calls the matching analyzer." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E67E22;strokeColor=#CA6F1E;fontColor=#ffffff;fontSize=10;arcSize=6;" vertex="1" parent="1">
+      <mxGeometry x="400" y="325" width="290" height="115" as="geometry"/>
+    </mxCell>
+
+    <!-- ══════════════════════════════════════════════
+         PATH 3 — DASHBOARD AGENT MODE  (purple zone)
+    ══════════════════════════════════════════════════ -->
+    <mxCell id="z3" value="③ PATH 3 — DASHBOARD AGENT MODE" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5EEF8;strokeColor=#8E44AD;arcSize=3;align=left;verticalAlign=top;fontSize=11;fontStyle=1;fontColor=#6C3483;spacingLeft=12;spacingTop=8;strokeWidth=2;" vertex="1" parent="1">
+      <mxGeometry x="738" y="78" width="444" height="385" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="p3_person" value="&lt;b&gt;User&lt;/b&gt;&lt;br&gt;Types a prompt in plain English" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#08427B;strokeColor=#052E56;fontColor=#ffffff;fontSize=11;arcSize=8;" vertex="1" parent="1">
+      <mxGeometry x="833" y="105" width="210" height="55" as="geometry"/>
+    </mxCell>
+    <mxCell id="p3_dash" value="&lt;b&gt;Next.js Dashboard&lt;/b&gt;&lt;br&gt;&quot;Check if my storage accounts are secure&quot;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8DAEF;strokeColor=#8E44AD;fontColor=#4A235A;fontSize=10;arcSize=6;" vertex="1" parent="1">
+      <mxGeometry x="756" y="210" width="405" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="p3_claude" value="&lt;b&gt;Claude Agent&lt;/b&gt;&lt;br&gt;&lt;font color='#f0d9ff'&gt;External AI&lt;/font&gt;&lt;br&gt;&lt;br&gt;Reads the prompt. Decides which MCP tools to call." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#08427B;strokeColor=#052E56;fontColor=#ffffff;fontSize=10;arcSize=6;" vertex="1" parent="1">
+      <mxGeometry x="756" y="325" width="195" height="115" as="geometry"/>
+    </mxCell>
+    <mxCell id="p3_mcp" value="&lt;b&gt;MCP Server&lt;/b&gt;&lt;br&gt;&lt;font color='#f0d9ff'&gt;cmd/mcp.go&lt;/font&gt;&lt;br&gt;&lt;br&gt;Receives MCP tool call and invokes the matching analyzer." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8E44AD;strokeColor=#6C3483;fontColor=#ffffff;fontSize=10;arcSize=6;" vertex="1" parent="1">
+      <mxGeometry x="971" y="325" width="195" height="115" as="geometry"/>
+    </mxCell>
+
+    <!-- ══════════════════════════════════════════════
+         SHARED CORE
+    ══════════════════════════════════════════════════ -->
+    <mxCell id="z4" value="SHARED CORE — All three paths use the same analysis engine" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F8F5;strokeColor=#1E8449;arcSize=3;align=left;verticalAlign=top;fontSize=11;fontStyle=1;fontColor=#1E8449;spacingLeft=12;spacingTop=8;strokeWidth=2;" vertex="1" parent="1">
+      <mxGeometry x="18" y="495" width="1164" height="238" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="s_analyzers" value="&lt;b&gt;12 Analyzer Modules&lt;/b&gt;&lt;br&gt;&lt;font color='#aaccff'&gt;internal/analyzers — shared by CLI, HTTP API Server and MCP Server&lt;/font&gt;&lt;br&gt;&lt;br&gt;One module per resource type. Applies Critical / Warning / Info severity rules. Returns structured findings." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6DA4;fontColor=#ffffff;fontSize=10;arcSize=6;" vertex="1" parent="1">
+      <mxGeometry x="35" y="518" width="1130" height="75" as="geometry"/>
+    </mxCell>
+    <mxCell id="s_sdk" value="&lt;b&gt;Azure SDK Clients&lt;/b&gt;&lt;br&gt;&lt;font color='#aaccff'&gt;azure-sdk-for-go&lt;/font&gt;&lt;br&gt;&lt;br&gt;azidentity auth + 12 ARM clients. Fetches live resource data from Azure." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6DA4;fontColor=#ffffff;fontSize=10;arcSize=6;" vertex="1" parent="1">
+      <mxGeometry x="35" y="610" width="355" height="100" as="geometry"/>
+    </mxCell>
+    <mxCell id="s_aad" value="&lt;b&gt;Azure Active Directory&lt;/b&gt;&lt;br&gt;&lt;font color='#eeeeee'&gt;External System&lt;/font&gt;&lt;br&gt;&lt;br&gt;Validates Service Principal. Issues OAuth2 access token." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6F6F6F;strokeColor=#3A3A3A;fontColor=#ffffff;fontSize=10;arcSize=6;" vertex="1" parent="1">
+      <mxGeometry x="410" y="610" width="365" height="100" as="geometry"/>
+    </mxCell>
+    <mxCell id="s_arm" value="&lt;b&gt;Azure Resource Manager&lt;/b&gt;&lt;br&gt;&lt;font color='#eeeeee'&gt;External System&lt;/font&gt;&lt;br&gt;&lt;br&gt;Returns live resource data for all 12 service types via REST API." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6F6F6F;strokeColor=#3A3A3A;fontColor=#ffffff;fontSize=10;arcSize=6;" vertex="1" parent="1">
+      <mxGeometry x="795" y="610" width="370" height="100" as="geometry"/>
+    </mxCell>
+
+    <!-- ══════════════════════════════════════════════
+         OUTPUTS
+    ══════════════════════════════════════════════════ -->
+    <mxCell id="o1" value="&lt;b&gt;CLI Output&lt;/b&gt;&lt;br&gt;&lt;br&gt;Table or JSON printed&lt;br&gt;to the terminal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6EAF8;strokeColor=#2E86C1;fontColor=#1A5276;fontSize=11;arcSize=6;" vertex="1" parent="1">
+      <mxGeometry x="18" y="758" width="340" height="95" as="geometry"/>
+    </mxCell>
+    <mxCell id="o2" value="&lt;b&gt;Dashboard — Live Findings&lt;/b&gt;&lt;br&gt;&lt;br&gt;Summary cards, sortable table&lt;br&gt;and severity filters in browser" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDEBD0;strokeColor=#E67E22;fontColor=#784212;fontSize=11;arcSize=6;" vertex="1" parent="1">
+      <mxGeometry x="378" y="758" width="340" height="95" as="geometry"/>
+    </mxCell>
+    <mxCell id="o3" value="&lt;b&gt;Dashboard — AI Explanation&lt;/b&gt;&lt;br&gt;&lt;br&gt;Claude explains findings&lt;br&gt;in plain English in the browser" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8DAEF;strokeColor=#8E44AD;fontColor=#4A235A;fontSize=11;arcSize=6;" vertex="1" parent="1">
+      <mxGeometry x="738" y="758" width="444" height="95" as="geometry"/>
+    </mxCell>
+
+    <!-- ══════════════════════════════════════════════
+         ARROWS — WITHIN ZONES
+    ══════════════════════════════════════════════════ -->
+    <!-- Path 1 internal -->
+    <mxCell id="a_p1a" value="" style="endArrow=block;endFill=1;edgeStyle=none;html=1;strokeColor=#2E86C1;strokeWidth=2;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry"><mxPoint x="185" y="160" as="sourcePoint"/><mxPoint x="185" y="210" as="targetPoint"/></mxGeometry>
+    </mxCell>
+    <mxCell id="a_p1b" value="" style="endArrow=block;endFill=1;edgeStyle=none;html=1;strokeColor=#2E86C1;strokeWidth=2;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry"><mxPoint x="185" y="270" as="sourcePoint"/><mxPoint x="185" y="325" as="targetPoint"/></mxGeometry>
+    </mxCell>
+
+    <!-- Path 2 internal -->
+    <mxCell id="a_p2a" value="" style="endArrow=block;endFill=1;edgeStyle=none;html=1;strokeColor=#E67E22;strokeWidth=2;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry"><mxPoint x="548" y="160" as="sourcePoint"/><mxPoint x="548" y="210" as="targetPoint"/></mxGeometry>
+    </mxCell>
+    <mxCell id="a_p2b" value="" style="endArrow=block;endFill=1;edgeStyle=none;html=1;strokeColor=#E67E22;strokeWidth=2;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry"><mxPoint x="548" y="270" as="sourcePoint"/><mxPoint x="548" y="325" as="targetPoint"/></mxGeometry>
+    </mxCell>
+
+    <!-- Path 3 internal -->
+    <mxCell id="a_p3a" value="" style="endArrow=block;endFill=1;edgeStyle=none;html=1;strokeColor=#8E44AD;strokeWidth=2;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry"><mxPoint x="960" y="160" as="sourcePoint"/><mxPoint x="960" y="210" as="targetPoint"/></mxGeometry>
+    </mxCell>
+    <mxCell id="a_p3b" value="" style="endArrow=block;endFill=1;edgeStyle=none;html=1;strokeColor=#8E44AD;strokeWidth=2;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry"><mxPoint x="960" y="270" as="sourcePoint"/><mxPoint x="853" y="325" as="targetPoint"/></mxGeometry>
+    </mxCell>
+    <mxCell id="a_p3c" value="calls MCP tools" style="endArrow=block;endFill=1;edgeStyle=none;html=1;strokeColor=#8E44AD;strokeWidth=2;fontSize=10;fontColor=#8E44AD;align=center;verticalAlign=bottom;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry"><mxPoint x="951" y="382" as="sourcePoint"/><mxPoint x="971" y="382" as="targetPoint"/></mxGeometry>
+    </mxCell>
+
+    <!-- ══════════════════════════════════════════════
+         ARROWS — ZONES TO SHARED CORE (converging)
+    ══════════════════════════════════════════════════ -->
+    <mxCell id="a_c1" value="invokes analyzer" style="endArrow=block;endFill=1;edgeStyle=none;html=1;strokeColor=#2E86C1;strokeWidth=2;fontSize=10;fontColor=#2E86C1;align=center;verticalAlign=right;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry"><mxPoint x="185" y="440" as="sourcePoint"/><mxPoint x="185" y="518" as="targetPoint"/></mxGeometry>
+    </mxCell>
+    <mxCell id="a_c2" value="invokes analyzer" style="endArrow=block;endFill=1;edgeStyle=none;html=1;strokeColor=#E67E22;strokeWidth=2;fontSize=10;fontColor=#E67E22;align=center;verticalAlign=right;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry"><mxPoint x="548" y="440" as="sourcePoint"/><mxPoint x="548" y="518" as="targetPoint"/></mxGeometry>
+    </mxCell>
+    <mxCell id="a_c3" value="invokes analyzer" style="endArrow=block;endFill=1;edgeStyle=none;html=1;strokeColor=#8E44AD;strokeWidth=2;fontSize=10;fontColor=#8E44AD;align=center;verticalAlign=right;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry"><mxPoint x="1068" y="440" as="sourcePoint"/><mxPoint x="1068" y="518" as="targetPoint"/></mxGeometry>
+    </mxCell>
+
+    <!-- ══════════════════════════════════════════════
+         ARROWS — WITHIN SHARED CORE
+    ══════════════════════════════════════════════════ -->
+    <mxCell id="a_s1" value="fetches data" style="endArrow=block;endFill=1;edgeStyle=none;html=1;strokeColor=#1E8449;strokeWidth=2;fontSize=10;fontColor=#1E8449;align=center;verticalAlign=right;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry"><mxPoint x="215" y="593" as="sourcePoint"/><mxPoint x="215" y="610" as="targetPoint"/></mxGeometry>
+    </mxCell>
+    <mxCell id="a_s2" value="authenticates" style="endArrow=block;endFill=1;edgeStyle=none;html=1;strokeColor=#1E8449;strokeWidth=2;fontSize=10;fontColor=#1E8449;align=center;verticalAlign=right;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry"><mxPoint x="390" y="657" as="sourcePoint"/><mxPoint x="410" y="657" as="targetPoint"/></mxGeometry>
+    </mxCell>
+    <mxCell id="a_s3" value="reads resources" style="endArrow=block;endFill=1;edgeStyle=none;html=1;strokeColor=#1E8449;strokeWidth=2;fontSize=10;fontColor=#1E8449;align=center;verticalAlign=right;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry"><mxPoint x="775" y="657" as="sourcePoint"/><mxPoint x="795" y="657" as="targetPoint"/></mxGeometry>
+    </mxCell>
+
+    <!-- ══════════════════════════════════════════════
+         ARROWS — SHARED CORE TO OUTPUTS (diverging)
+    ══════════════════════════════════════════════════ -->
+    <mxCell id="a_o1" value="findings" style="endArrow=block;endFill=1;edgeStyle=none;html=1;strokeColor=#2E86C1;strokeWidth=2;fontSize=10;fontColor=#2E86C1;align=center;verticalAlign=right;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry"><mxPoint x="185" y="733" as="sourcePoint"/><mxPoint x="185" y="758" as="targetPoint"/></mxGeometry>
+    </mxCell>
+    <mxCell id="a_o2" value="findings" style="endArrow=block;endFill=1;edgeStyle=none;html=1;strokeColor=#E67E22;strokeWidth=2;fontSize=10;fontColor=#E67E22;align=center;verticalAlign=right;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry"><mxPoint x="548" y="733" as="sourcePoint"/><mxPoint x="548" y="758" as="targetPoint"/></mxGeometry>
+    </mxCell>
+    <mxCell id="a_o3" value="findings" style="endArrow=block;endFill=1;edgeStyle=none;html=1;strokeColor=#8E44AD;strokeWidth=2;fontSize=10;fontColor=#8E44AD;align=center;verticalAlign=right;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry"><mxPoint x="1068" y="733" as="sourcePoint"/><mxPoint x="1068" y="758" as="targetPoint"/></mxGeometry>
+    </mxCell>
+
+  </root>
+</mxGraphModel>
